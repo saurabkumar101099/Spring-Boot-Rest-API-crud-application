@@ -35,10 +35,11 @@ public class TicketBookingController {
 		bookingService.deleteTicket(ticketId);
 	}
 
-	public Ticket updateTicket(Integer ticketId, String newEmail) {
-		Ticket ticketFromDb = bookingService.getTicketById(ticketId);
-		ticketFromDb.setEmail(newEmail);
-		Ticket updateTicket = bookingService.createTicket(ticketFromDb);
-		return updateTicket;
+	@PutMapping(value="/ticket/{ticketId}/{newEmail:.+}")
+
+	public Ticket updateTicket(@PathVariable("ticketId")Integer ticketId, @PathVariable("newEmail") String newEmail) {
+		
+		
+		return  bookingService.updateTicket(ticketId,newEmail);
 	}
 }
